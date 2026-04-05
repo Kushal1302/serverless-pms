@@ -8,6 +8,7 @@ import { docClient } from "../../lib/dynamo.js";
 import { env } from "../../config/env.js";
 import { v4 as uuid } from "uuid";
 import type { Patient } from "./patient.types.js";
+import { osClient } from "../../lib/opensearch.js";
 
 // Create a new patient in DynamoDB
 export const createPatientDB = async (data: Patient) => {
@@ -24,6 +25,13 @@ export const createPatientDB = async (data: Patient) => {
       Item: patient,
     }),
   );
+
+  // save data to opensearch index
+  await osClient.index({
+    index: "patients",
+    id: patient.id,
+    body: patient,
+  });
 
   return patient;
 };

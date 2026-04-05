@@ -1,6 +1,7 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import patientRouter from "./modules/patient/patient.routes.js";
+import { authMiddleware } from "./middleware/auth.middleware.js";
 
 const app = new Hono();
 

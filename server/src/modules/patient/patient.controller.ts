@@ -27,6 +27,7 @@ export const createPatient = async (c: Context) => {
 
     return c.json(success(patient, "Patient created successfully"), 201);
   } catch (err: any) {
+    console.log(err);
     return c.json(fail(err.message), 500);
   }
 };
@@ -112,6 +113,7 @@ export const deletePatient = async (c: Context) => {
 
     return c.json(success({}, "Patient deleted successfully"), 200);
   } catch (err: any) {
+    console.log(err);
     return c.json(fail(err.message), 500);
   }
 };
