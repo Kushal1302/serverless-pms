@@ -5,6 +5,7 @@ import {
   createPatientDB,
   deletePatientDB,
   getPatientByIdDB,
+  searchPatientsDB,
   updatePatientDB,
 } from "./patient.service.js";
 
@@ -114,6 +115,26 @@ export const deletePatient = async (c: Context) => {
     return c.json(success({}, "Patient deleted successfully"), 200);
   } catch (err: any) {
     console.log(err);
+    return c.json(fail(err.message), 500);
+  }
+};
+
+export const searchPatients = async (c: Context) => {
+  try {
+    // Get the query parameters
+    const { conditions = "", allergies = "" } = c.req.query();
+
+    // Return error if query parameters are not provided
+    if (!conditions && !allergies) {
+      return c.json(fail("Query parameters are required"), 400);
+    }
+
+    // Search patients in DynamoDB
+    const patients = await searchPatientsDB({ conditions, allergies });
+
+    // Return the patients
+    return c.json(success(patients));
+  } catch (err: any) {
     return c.json(fail(err.message), 500);
   }
 };

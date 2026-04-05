@@ -6,7 +6,7 @@ import { authMiddleware } from "./middleware/auth.middleware.js";
 const app = new Hono();
 
 app.get("/", (c) => {
-  return c.text("Hello Hono!");
+  return c.text("Serverless PMD API is running");
 });
 
 // Patient routes

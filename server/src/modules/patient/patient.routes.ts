@@ -4,14 +4,21 @@ import {
   getPatient,
   updatePatient,
   deletePatient,
+  searchPatients,
 } from "./patient.controller.js";
 import { authMiddleware } from "../../middleware/auth.middleware.js";
 
 const router = new Hono();
 
-router.post("/", authMiddleware, createPatient);
-router.get("/:id", authMiddleware, getPatient);
-router.put("/:id", authMiddleware, updatePatient);
-router.delete("/:id", authMiddleware, deletePatient);
+// Public Route
+router.get("/search", searchPatients);
+
+// Protected Routes
+router.use("/*", authMiddleware);
+
+router.post("/", createPatient);
+router.get("/:id", getPatient);
+router.put("/:id", updatePatient);
+router.delete("/:id", deletePatient);
 
 export default router;
