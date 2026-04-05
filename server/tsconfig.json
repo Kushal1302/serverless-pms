@@ -3,12 +3,11 @@
     "target": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "skipLibCheck": true,
-    "types": ["node", "jest"],
+    "types": ["node"],
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx",
-    "outDir": "./dist"
+    "jsxImportSource": "hono/jsx"
   },
   "exclude": ["node_modules", "dist"]
 }
