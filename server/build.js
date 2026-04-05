@@ -1,4 +1,5 @@
 import { build } from "esbuild";
+import process from "node:process";
 
 build({
   entryPoints: ["src/handler.ts"], // Lambda entry

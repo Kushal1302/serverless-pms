@@ -4,7 +4,6 @@ import {
   getPatient,
   updatePatient,
   deletePatient,
-  searchPatients,
 } from "./patient.controller.js";
 import { authMiddleware } from "../../middleware/auth.middleware.js";
 
