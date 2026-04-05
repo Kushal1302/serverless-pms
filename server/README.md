@@ -1,23 +1,23 @@
-# 🚀 Serverless Patient Management System (PMS)
+# Serverless Patient Management System (PMS)
 
 A fully serverless backend system built using Node.js and AWS services, supporting patient CRUD operations, authentication, and advanced search capabilities.
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
-* **Node.js** (Hono framework)
-* **AWS Lambda**
-* **API Gateway**
-* **DynamoDB** (Primary database)
-* **Amazon Cognito** (Authentication)
-* **Amazon OpenSearch Service** (Search engine)
-* **GitHub Actions** (CI/CD)
-* **ESLint + Prettier** (Code quality)
+- **Node.js** (Hono framework)
+- **AWS Lambda**
+- **API Gateway**
+- **DynamoDB** (Primary database)
+- **Amazon Cognito** (Authentication)
+- **Amazon OpenSearch Service** (Search engine)
+- **GitHub Actions** (CI/CD)
+- **ESLint + Prettier** (Code quality)
 
 ---
 
-## 🧠 Architecture Overview
+## Architecture Overview
 
 Client → API Gateway → Lambda (Hono App)
                   ↓
@@ -29,7 +29,7 @@ Authentication handled via Cognito using JWT tokens.
 
 ---
 
-## 🔐 Authentication Flow
+## Authentication Flow
 
 1. User logs in via Cognito
 2. Receives `AccessToken`
@@ -43,18 +43,18 @@ Authorization: Bearer <AccessToken>
 
 ---
 
-## 📦 Features
+## Features
 
-* ✅ Create, Read, Update, Delete patients
-* 🔐 Secure APIs using Cognito JWT authentication
-* 🔍 Search patients by medical conditions using OpenSearch
-* ⚡ Serverless deployment (Lambda + API Gateway)
-* 🔄 CI/CD pipeline using GitHub Actions
-* 🧹 Code quality enforced with ESLint & Prettier
+- Create, Read, Update, Delete patients
+- Secure APIs using Cognito JWT authentication
+- Search patients by medical conditions using OpenSearch
+- Serverless deployment (Lambda + API Gateway)
+- CI/CD pipeline using GitHub Actions
+- Code quality enforced with ESLint & Prettier
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 server/
@@ -80,7 +80,7 @@ server/
 
 ---
 
-## ⚙️ Local Setup
+## Local Setup
 
 ### 1. Clone Repository
 
@@ -107,9 +107,9 @@ Create `.env` file:
 PORT=3000
 DYNAMO_TABLE=Patients
 AWS_REGION=eu-central-1
-OPENSEARCH_URL=your-opensearch-endpoint
-COGNITO_USER_POOL_ID=your_user_pool_id
-COGNITO_CLIENT_ID=your_client_id
+AWS_OPENSEARCH_URL=your-opensearch-endpoint
+AWS_COGNITO_USERS_POOL_ID=your_user_pool_id
+AWS_COGNITO_APP_CLIENT_ID=your_client_id
 ```
 
 ---
@@ -128,16 +128,16 @@ http://localhost:3000
 
 ---
 
-## ☁️ Deployment
+## Deployment
 
-* Code is bundled using **esbuild**
-* Deployed to **AWS Lambda**
-* API exposed via **API Gateway**
-* Automated deployment using **GitHub Actions**
+- Code is bundled using **esbuild**
+- Deployed to **AWS Lambda**
+- API exposed via **API Gateway**
+- Automated deployment using **GitHub Actions**
 
 ---
 
-## 🔄 CI/CD Pipeline
+## CI/CD Pipeline
 
 On every push to `main`:
 
@@ -150,9 +150,9 @@ On every push to `main`:
 
 ---
 
-## 📡 API Endpoints
+## API Endpoints
 
-### 🔐 Authentication (Cognito)
+### Authentication (Cognito)
 
 ```
 POST https://cognito-idp.eu-central-1.amazonaws.com/
@@ -160,7 +160,7 @@ POST https://cognito-idp.eu-central-1.amazonaws.com/
 
 ---
 
-### ➕ Create Patient
+### Create Patient
 
 ```
 POST /patients
@@ -168,7 +168,7 @@ POST /patients
 
 ---
 
-### 📥 Get Patient
+### Get Patient
 
 ```
 GET /patients/:id
@@ -176,7 +176,7 @@ GET /patients/:id
 
 ---
 
-### ✏️ Update Patient
+### Update Patient
 
 ```
 PUT /patients/:id
@@ -184,7 +184,7 @@ PUT /patients/:id
 
 ---
 
-### 🗑️ Delete Patient
+### Delete Patient
 
 ```
 DELETE /patients/:id
@@ -192,7 +192,7 @@ DELETE /patients/:id
 
 ---
 
-### 🔍 Search Patients
+### Search Patients
 
 ```
 GET /patients/search?condition=Diabetes
@@ -200,36 +200,89 @@ GET /patients/search?condition=Diabetes
 
 ---
 
-## 🔍 Design Decisions
+## Design Decisions
 
-* **DynamoDB** used for fast and scalable storage
-* **OpenSearch** used for condition-based search (since DynamoDB does not support efficient array queries)
-* **Cognito** used for secure and scalable authentication
-* **JWT middleware** ensures stateless authentication
-* **Serverless architecture** reduces infrastructure overhead
-
----
-
-## ⚠️ Notes
-
-* OpenSearch access policy is simplified for development
-* In production, IAM-based access and request signing should be used
+- **DynamoDB** used for fast and scalable storage
+- **OpenSearch** used for condition-based search (since DynamoDB does not support efficient array queries)
+- **Cognito** used for secure and scalable authentication
+- **JWT middleware** ensures stateless authentication
+- **Serverless architecture** reduces infrastructure overhead
 
 ---
 
-## 🧪 Postman Collection
+## Notes
+
+- OpenSearch access policy is simplified for development
+- In production, IAM-based access and request signing should be used
+
+---
+
+## Postman Collection
 
 A Postman collection is included to test all APIs.
 
 ---
 
-## 📚 References
+## References
 
-JWT verification guide:
-https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html
+The following official documentation and resources were referred during development:
+
+### Authentication (Cognito)
+
+- Amazon Cognito JWT Verification Guide
+  https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html
+
+- Cognito User Pools Authentication Flow
+  https://docs.aws.amazon.com/cognito/latest/developerguide/authentication-flow.html
 
 ---
 
-## 💬 Author
+### DynamoDB
 
-Built by Kushal Kumar 🚀
+- DynamoDB Developer Guide
+  https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html
+
+- AWS SDK v3 DynamoDB (Node.js)
+  https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/dynamodb/
+
+---
+
+### OpenSearch
+
+- OpenSearch Getting Started
+  https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html
+
+- OpenSearch Node.js Client
+  https://opensearch.org/docs/latest/clients/javascript/
+
+---
+
+### AWS Lambda & API Gateway
+
+- AWS Lambda Documentation
+  https://docs.aws.amazon.com/lambda/latest/dg/welcome.html
+
+- API Gateway + Lambda Integration
+  https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integration-with-lambda.html
+
+---
+
+### CI/CD (GitHub Actions)
+
+- GitHub Actions Documentation
+  https://docs.github.com/en/actions
+
+---
+
+### Additional Concepts
+
+- JWT Introduction
+  https://jwt.io/introduction
+
+---
+
+All implementations are adapted and customized based on project requirements.
+
+## Author
+
+Built by Kushal Kumar
