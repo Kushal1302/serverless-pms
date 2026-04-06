@@ -105,11 +105,14 @@ Create `.env` file:
 
 ```
 PORT=3000
-DYNAMO_TABLE=Patients
-AWS_REGION=eu-central-1
-AWS_OPENSEARCH_URL=your-opensearch-endpoint
-AWS_COGNITO_USERS_POOL_ID=your_user_pool_id
-AWS_COGNITO_APP_CLIENT_ID=your_client_id
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+AWS_REGION="eu-central-1"
+DYNAMO_TABLE="Patients"
+NODE_ENV="development"
+AWS_COGNITO_USERS_POOL_ID="your-pool-id"
+AWS_COGNITO_APP_CLIENT_ID="your-client-id"
+AWS_OPENSEARCH_URL="your-opensearch-url"
 ```
 
 ---
